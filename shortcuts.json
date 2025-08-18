@@ -3,16 +3,16 @@
     "course": "マリオサーキット",
     "shortcuts": [
       {
-        "start": "最終コーナー手前",
-        "end": "最終コーナー奥",
-        "video_url": "https://www.youtube.com/embed/XXXXXX",
-        "description": "キノコを使ってダートを突っ切るショートカットです。コインを事前に集めておくと良いでしょう。"
+        "name": "最終コーナー（キノコ）",
+        "videoType": "youtube",
+        "videoSource": "dQw4w9WgXcQ",
+        "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
       },
       {
-        "start": "中盤のS字カーブ",
-        "end": "S字カーブの出口",
-        "video_url": "https://www.youtube.com/embed/YYYYYY",
-        "description": "ジャンプアクションを利用して、コースの内側を飛び越えます。"
+        "name": "S字カーブ（ジャンプアクション）",
+        "videoType": "youtube",
+        "videoSource": "o-YBDTqX_ZU",
+        "description": "コース中盤のS字カーブで、内側の小さな段差を使ってジャンプアクションを決め、ショートカットします。\nキノコが不要なのが利点です。"
       }
     ]
   },
@@ -20,10 +20,44 @@
     "course": "モーモーカントリー",
     "shortcuts": [
       {
-        "start": "序盤の広場",
-        "end": "橋の手前",
-        "video_url": "https://www.youtube.com/embed/ZZZZZZ",
-        "description": "キノコを使って牧草地をまっすぐ進みます。牛に注意！"
+        "name": "牧草地（キノコ）",
+        "videoType": "youtube",
+        "videoSource": "3tmd-ClpJxA",
+        "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
+      },
+      {
+        "name": "風車エリア（グライダー）",
+        "videoType": "youtube",
+        "videoSource": "Y1_Vsyb_W6M",
+        "description": "コース終盤の風車があるエリアで、グライダーを使って大きくショートカットできます。\n高度を維持するのがポイントです。"
+      }
+    ]
+  },
+  {
+    "course": "キノピオハーバー",
+    "shortcuts": [
+      {
+        "name": "市場の屋根上",
+        "videoType": "youtube",
+        "videoSource": "G8iEMVr7GFo",
+        "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
+      },
+      {
+        "name": "最終路面電車エリア",
+        "videoType": "youtube",
+        "videoSource": "8ybW48rKBME",
+        "description": "最後の路面電車が走るエリアで、イン側の狭い通路を通ります。\n電車にぶつかるリスクはありますが、成功すれば速いです。"
+      }
+    ]
+  },
+  {
+    "course": "トロフィーシティ",
+    "shortcuts": [
+      {
+        "name": "DKうちゅうセンター",
+        "videoType": "mp4",
+        "videoSource": "https://video.twimg.com/amplify_video/1956987521390505984/vid/avc1/1280x720/zVscxg-dN2oSNmwL.mp4?tag=14",
+        "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカットです。コースの壁を利用してジャンプします。"
       }
     ]
   }
