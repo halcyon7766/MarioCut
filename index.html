@@ -61,102 +61,38 @@
     </div>
 
     <script>
-        // --- データ部分 ---
-        // 外部ファイル読み込みをやめ、HTML内に直接データを記述することで問題を解消します。
-        const shortcutData = [
-          {
-            "course": "マリオサーキット",
-            "shortcuts": [
-              {
-                "name": "最終コーナー",
-                "methods": [
-                  {
-                    "type": "キノコ使用",
-                    "videoType": "youtube",
-                    "videoSource": "dQw4w9WgXcQ",
-                    "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
-                  },
-                  {
-                    "type": "NISC (アイテムなし)",
-                    "videoType": "youtube",
-                    "videoSource": "o-YBDTqX_ZU",
-                    "description": "アイテムを使わず、特定の角度で壁にぶつかりジャンプすることでショートカットします。高度なテクニックが必要です。"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "course": "モーモーカントリー",
-            "shortcuts": [
-              {
-                "name": "牧草地",
-                "methods": [
-                  {
-                    "type": "キノコ使用",
-                    "videoType": "youtube",
-                    "videoSource": "3tmd-ClpJxA",
-                    "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "course": "キノピオハーバー",
-            "shortcuts": [
-              {
-                "name": "市場の屋根上",
-                "methods": [
-                  {
-                    "type": "通常ルート",
-                    "videoType": "youtube",
-                    "videoSource": "G8iEMVr7GFo",
-                    "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "course": "トロフィーシティ",
-            "shortcuts": [
-              {
-                "name": "DKうちゅうセンター",
-                "methods": [
-                  {
-                    "type": "NISC",
-                    "videoType": "mp4",
-                    "videoSource": "https://video.twimg.com/amplify_video/1956987521390505984/vid/avc1/1280x720/zVscxg-dN2oSNmwL.mp4?tag=14",
-                    "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカット。コースの壁を利用してジャンプします。"
-                  },
-                  {
-                    "type": "キノコ使用",
-                    "videoType": "mp4",
-                    "videoSource": "https://video.twimg.com/amplify_video/1956998418578178048/vid/avc1/1280x720/1au4LSvkmh0j0FeA.mp4?tag=14",
-                    "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカット。"
-                  }
-                ]
-              }
-            ]
-          }
-        ];
-
         // --- DOM要素の取得 ---
         const courseSelect = document.getElementById('course-select');
         const shortcutSelect = document.getElementById('shortcut-select');
         const resultPlaceholder = document.getElementById('result-placeholder');
         const resultContent = document.getElementById('result-content');
 
+        // --- グローバル変数 ---
+        let shortcutData = []; // 読み込んだJSONデータを保持する配列
+
         // --- 初期化処理 ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // データを直接利用するため、fetch処理は不要
-            shortcutData.forEach(data => {
-                const option = document.createElement('option');
-                option.value = data.course;
-                option.textContent = data.course;
-                courseSelect.appendChild(option);
-            });
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 外部JSONファイルを非同期で読み込む
+                // GitHub Pagesのパス構造に合わせてリポジトリ名を追加
+                const response = await fetch('/MarioCut/shortcuts.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                shortcutData = await response.json();
+
+                // 読み込んだデータでドロップダウンを初期化
+                shortcutData.forEach(data => {
+                    const option = document.createElement('option');
+                    option.value = data.course;
+                    option.textContent = data.course;
+                    courseSelect.appendChild(option);
+                });
+
+            } catch (error) {
+                console.error('ショートカットデータの読み込みに失敗しました:', error);
+                resultPlaceholder.textContent = 'エラー: shortcuts.jsonの読み込みに失敗しました。';
+            }
             
             // イベントリスナーを設定
             courseSelect.addEventListener('change', handleCourseChange);
