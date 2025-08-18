@@ -3,16 +3,21 @@
     "course": "マリオサーキット",
     "shortcuts": [
       {
-        "name": "最終コーナー（キノコ）",
-        "videoType": "youtube",
-        "videoSource": "dQw4w9WgXcQ",
-        "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
-      },
-      {
-        "name": "S字カーブ（ジャンプアクション）",
-        "videoType": "youtube",
-        "videoSource": "o-YBDTqX_ZU",
-        "description": "コース中盤のS字カーブで、内側の小さな段差を使ってジャンプアクションを決め、ショートカットします。\nキノコが不要なのが利点です。"
+        "name": "最終コーナー",
+        "methods": [
+          {
+            "type": "キノコ使用",
+            "videoType": "youtube",
+            "videoSource": "dQw4w9WgXcQ",
+            "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
+          },
+          {
+            "type": "NISC (アイテムなし)",
+            "videoType": "youtube",
+            "videoSource": "o-YBDTqX_ZU",
+            "description": "アイテムを使わず、特定の角度で壁にぶつかりジャンプすることでショートカットします。高度なテクニックが必要です。"
+          }
+        ]
       }
     ]
   },
@@ -20,16 +25,15 @@
     "course": "モーモーカントリー",
     "shortcuts": [
       {
-        "name": "牧草地（キノコ）",
-        "videoType": "youtube",
-        "videoSource": "3tmd-ClpJxA",
-        "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
-      },
-      {
-        "name": "風車エリア（グライダー）",
-        "videoType": "youtube",
-        "videoSource": "Y1_Vsyb_W6M",
-        "description": "コース終盤の風車があるエリアで、グライダーを使って大きくショートカットできます。\n高度を維持するのがポイントです。"
+        "name": "牧草地",
+        "methods": [
+          {
+            "type": "キノコ使用",
+            "videoType": "youtube",
+            "videoSource": "3tmd-ClpJxA",
+            "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
+          }
+        ]
       }
     ]
   },
@@ -38,15 +42,14 @@
     "shortcuts": [
       {
         "name": "市場の屋根上",
-        "videoType": "youtube",
-        "videoSource": "G8iEMVr7GFo",
-        "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
-      },
-      {
-        "name": "最終路面電車エリア",
-        "videoType": "youtube",
-        "videoSource": "8ybW48rKBME",
-        "description": "最後の路面電車が走るエリアで、イン側の狭い通路を通ります。\n電車にぶつかるリスクはありますが、成功すれば速いです。"
+        "methods": [
+          {
+            "type": "通常ルート",
+            "videoType": "youtube",
+            "videoSource": "G8iEMVr7GFo",
+            "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
+          }
+        ]
       }
     ]
   },
@@ -55,9 +58,20 @@
     "shortcuts": [
       {
         "name": "DKうちゅうセンター",
-        "videoType": "mp4",
-        "videoSource": "https://video.twimg.com/amplify_video/1956987521390505984/vid/avc1/1280x720/zVscxg-dN2oSNmwL.mp4?tag=14",
-        "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカットです。コースの壁を利用してジャンプします。"
+        "methods": [
+          {
+            "type": "NISC",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956987521390505984/vid/avc1/1280x720/zVscxg-dN2oSNmwL.mp4?tag=14",
+            "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカット。コースの壁を利用してジャンプします。"
+          },
+          {
+            "type": "キノコ使用",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956998418578178048/vid/avc1/1280x720/1au4LSvkmh0j0FeA.mp4?tag=14",
+            "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカット。"
+          }
+        ]
       }
     ]
   }
