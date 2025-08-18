@@ -1,0 +1,30 @@
+[
+  {
+    "course": "マリオサーキット",
+    "shortcuts": [
+      {
+        "start": "最終コーナー手前",
+        "end": "最終コーナー奥",
+        "video_url": "https://www.youtube.com/embed/XXXXXX",
+        "description": "キノコを使ってダートを突っ切るショートカットです。コインを事前に集めておくと良いでしょう。"
+      },
+      {
+        "start": "中盤のS字カーブ",
+        "end": "S字カーブの出口",
+        "video_url": "https://www.youtube.com/embed/YYYYYY",
+        "description": "ジャンプアクションを利用して、コースの内側を飛び越えます。"
+      }
+    ]
+  },
+  {
+    "course": "モーモーカントリー",
+    "shortcuts": [
+      {
+        "start": "序盤の広場",
+        "end": "橋の手前",
+        "video_url": "https://www.youtube.com/embed/ZZZZZZ",
+        "description": "キノコを使って牧草地をまっすぐ進みます。牛に注意！"
+      }
+    ]
+  }
+]
