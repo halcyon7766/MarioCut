@@ -8,13 +8,13 @@
           {
             "type": "キノコ使用",
             "videoType": "youtube",
-            "videoSource": "",
+            "videoSource": "dQw4w9WgXcQ",
             "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
           },
           {
             "type": "NISC (アイテムなし)",
             "videoType": "youtube",
-            "videoSource": "",
+            "videoSource": "o-YBDTqX_ZU",
             "description": "アイテムを使わず、特定の角度で壁にぶつかりジャンプすることでショートカットします。高度なテクニックが必要です。"
           }
         ]
@@ -30,24 +30,8 @@
           {
             "type": "キノコ使用",
             "videoType": "youtube",
-            "videoSource": "",
+            "videoSource": "3tmd-ClpJxA",
             "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course": "DKスノーマウンテンアイスビルディング",
-    "shortcuts": [
-      {
-        "name": "ソルティータウン",
-        "methods": [
-          {
-            "type": "キノコ使用",
-            "videoType": "mp4",
-            "videoSource": "https://video.twimg.com/amplify_video/1956632027786276864/vid/avc1/1280x720/T2nN0ZmE6uNfP-Ji.mp4?tag=14",
-            "description": ""
           }
         ]
       }
@@ -62,7 +46,7 @@
           {
             "type": "通常ルート",
             "videoType": "youtube",
-            "videoSource": "",
+            "videoSource": "G8iEMVr7GFo",
             "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
           }
         ]
@@ -86,6 +70,38 @@
             "videoType": "mp4",
             "videoSource": "https://video.twimg.com/amplify_video/1956998418578178048/vid/avc1/1280x720/1au4LSvkmh0j0FeA.mp4?tag=14",
             "description": "DKうちゅうセンターへ向かうエリアでのショートカット。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "DKスノーマウンテンアイスビルディング",
+    "shortcuts": [
+      {
+        "name": "ソルティータウン",
+        "methods": [
+          {
+            "type": "キノコ使用",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956632027786276864/vid/avc1/1280x720/T2nN0ZmE6uNfP-Ji.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "リバーサイドサファリ",
+    "shortcuts": [
+      {
+        "name": "トロフィーシティ",
+        "methods": [
+          {
+            "type": "初手キノ3",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956525489037922304/vid/avc1/1280x720/yK6nRBGIpAFv_nYT.mp4?tag=14",
+            "description": "初手キノ3ショトカ"
           }
         ]
       }
