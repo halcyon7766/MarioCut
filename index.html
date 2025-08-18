@@ -11,38 +11,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* 日本語フォントと英字フォントを適切に設定 */
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
         }
-        /* 結果エリアのトランジション効果 */
         #result-container {
             transition: all 0.3s ease-in-out;
         }
-        /* 動画のアスペクト比を維持するためのクラス */
         .aspect-w-16 {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 */
-        }
-        .aspect-h-9 {
-            /* このクラスはパディングを制御するために使われます */
         }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-5xl">
         
-        <!-- ヘッダー部分 -->
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">マリオカート ショートカット ファインダー</h1>
-            <p class="text-gray-600 mt-2">コースとショートカットを選択して、動画と解説をチェック！</p>
+            <p class="text-gray-600 mt-2">コースとショートカットを選択して、複数の攻略法をチェック！</p>
         </header>
 
-        <!-- メインコンテンツ -->
         <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
             
-            <!-- コントロール部分（ドロップダウンリスト） -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
                     <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">1. コースを選択</label>
@@ -58,25 +49,15 @@
                 </div>
             </div>
 
-            <!-- 結果表示エリア -->
             <div id="result-container" class="bg-gray-50 p-6 rounded-lg min-h-[200px] flex items-center justify-center">
-                <p id="result-placeholder" class="text-gray-500">ここに選択したショートカットの情報が表示されます。</p>
+                <p id="result-placeholder" class="text-gray-500 text-center">ここに選択したショートカットの情報が表示されます。</p>
                 <div id="result-content" class="hidden w-full">
-                    <!-- 動画埋め込み -->
-                    <div id="video-wrapper" class="aspect-w-16 aspect-h-9 mb-6 rounded-lg overflow-hidden shadow-md bg-black">
-                        <!-- 動画がここに挿入されます -->
-                    </div>
-                    <!-- 説明文 -->
-                    <div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">💡 解説</h3>
-                        <p id="description-text" class="text-gray-700 leading-relaxed whitespace-pre-wrap"></p>
-                    </div>
+                    <!-- 複数の攻略法がここに挿入されます -->
                 </div>
             </div>
 
         </main>
 
-        <!-- フッター -->
         <footer class="text-center mt-8 text-sm text-gray-500">
             <p>&copy; 2024 halcyon7766</p>
         </footer>
@@ -86,28 +67,23 @@
         // --- DOM要素の取得 ---
         const courseSelect = document.getElementById('course-select');
         const shortcutSelect = document.getElementById('shortcut-select');
-        const resultContainer = document.getElementById('result-container');
         const resultPlaceholder = document.getElementById('result-placeholder');
         const resultContent = document.getElementById('result-content');
-        const videoWrapper = document.getElementById('video-wrapper');
-        const descriptionText = document.getElementById('description-text');
+
+        // --- グローバル変数 ---
+        let shortcutData = []; // 読み込んだJSONデータを保持する配列
 
         // --- 初期化処理 ---
-
-        // グローバル変数としてデータを保持
-        let shortcutData = [];
-
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                // JSONファイルを非同期で読み込む
+                // 外部JSONファイルを非同期で読み込む
                 const response = await fetch('shortcuts.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                // 読み込んだデータをグローバル変数に格納
                 shortcutData = await response.json();
 
-                // 1. コース選択のドロップダウンを生成
+                // 読み込んだデータでドロップダウンを初期化
                 shortcutData.forEach(data => {
                     const option = document.createElement('option');
                     option.value = data.course;
@@ -115,25 +91,19 @@
                     courseSelect.appendChild(option);
                 });
 
-                // 2. イベントリスナーを設定
-                courseSelect.addEventListener('change', handleCourseChange);
-                shortcutSelect.addEventListener('change', handleShortcutChange);
-
             } catch (error) {
                 console.error('ショートカットデータの読み込みに失敗しました:', error);
-                resultPlaceholder.textContent = 'エラー: shortcuts.json の読み込みに失敗しました。ファイルが同じ階層にあるか確認してください。';
+                resultPlaceholder.textContent = 'エラー: shortcuts.jsonの読み込みに失敗しました。';
             }
+            
+            // イベントリスナーを設定
+            courseSelect.addEventListener('change', handleCourseChange);
+            shortcutSelect.addEventListener('change', handleShortcutChange);
         });
 
-
         // --- イベントハンドラ関数 ---
-
-        /**
-         * コースが選択されたときの処理
-         */
         function handleCourseChange() {
             const selectedCourse = courseSelect.value;
-            
             shortcutSelect.innerHTML = '';
             shortcutSelect.disabled = true;
             hideResult();
@@ -162,9 +132,6 @@
             }
         }
 
-        /**
-         * ショートカットが選択されたときの処理
-         */
         function handleShortcutChange() {
             const selectedCourse = courseSelect.value;
             const selectedShortcutName = shortcutSelect.value;
@@ -182,55 +149,48 @@
         }
 
         // --- 表示更新関数 ---
-
         /**
-         * 結果を表示する（YouTubeとMP4の両対応版）
-         * @param {object} shortcut - 表示するショートカットの情報
+         * 複数の攻略法を並べて表示する
+         * @param {object} shortcut - 表示するショートカットの情報 (methods配列を含む)
          */
         function displayResult(shortcut) {
-            let videoElementHTML = '';
+            resultContent.innerHTML = ''; // 以前の結果をクリア
 
-            if (shortcut.videoType === 'youtube') {
-                videoElementHTML = `
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full"
-                        src="https://www.youtube.com/embed/${shortcut.videoSource}" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>`;
-            } else if (shortcut.videoType === 'mp4') {
-                videoElementHTML = `
-                    <video 
-                        class="absolute top-0 left-0 w-full h-full object-cover"
-                        src="${shortcut.videoSource}" 
-                        controls 
-                        autoplay 
-                        muted 
-                        loop 
-                        playsinline>
-                        お使いのブラウザは動画の再生に対応していません。
-                    </video>`;
-            }
+            const container = document.createElement('div');
+            // 攻略法が1つの場合は1列、2つ以上なら2列で表示
+            const gridColsClass = shortcut.methods.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1';
+            container.className = `grid grid-cols-1 ${gridColsClass} gap-6`;
 
-            videoWrapper.innerHTML = videoElementHTML;
-            descriptionText.textContent = shortcut.description;
+            shortcut.methods.forEach(method => {
+                let videoElementHTML = '';
+                if (method.videoType === 'youtube') {
+                    videoElementHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${method.videoSource}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                } else if (method.videoType === 'mp4') {
+                    videoElementHTML = `<video class="absolute top-0 left-0 w-full h-full object-cover" src="${method.videoSource}" controls autoplay muted loop playsinline>お使いのブラウザは動画の再生に対応していません。</video>`;
+                }
 
+                const methodHTML = `
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">${method.type}</h3>
+                        <div class="aspect-w-16 mb-4 rounded-lg overflow-hidden shadow-md bg-black">
+                            ${videoElementHTML}
+                        </div>
+                        <p class="text-gray-700 leading-relaxed whitespace-pre-wrap">${method.description}</p>
+                    </div>
+                `;
+                container.innerHTML += methodHTML;
+            });
+
+            resultContent.appendChild(container);
             resultPlaceholder.classList.add('hidden');
             resultContent.classList.remove('hidden');
         }
 
-        /**
-         * 結果を非表示にする
-         */
         function hideResult() {
             resultPlaceholder.classList.remove('hidden');
             resultContent.classList.add('hidden');
-            videoWrapper.innerHTML = '';
-            descriptionText.textContent = '';
+            resultContent.innerHTML = '';
         }
-
     </script>
 </body>
 </html>
