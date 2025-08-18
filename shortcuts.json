@@ -8,13 +8,13 @@
           {
             "type": "キノコ使用",
             "videoType": "youtube",
-            "videoSource": "dQw4w9WgXcQ",
+            "videoSource": "",
             "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
           },
           {
             "type": "NISC (アイテムなし)",
             "videoType": "youtube",
-            "videoSource": "o-YBDTqX_ZU",
+            "videoSource": "",
             "description": "アイテムを使わず、特定の角度で壁にぶつかりジャンプすることでショートカットします。高度なテクニックが必要です。"
           }
         ]
@@ -30,7 +30,7 @@
           {
             "type": "キノコ使用",
             "videoType": "youtube",
-            "videoSource": "3tmd-ClpJxA",
+            "videoSource": "",
             "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
           }
         ]
@@ -46,7 +46,7 @@
           {
             "type": "通常ルート",
             "videoType": "youtube",
-            "videoSource": "G8iEMVr7GFo",
+            "videoSource": "",
             "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
           }
         ]
@@ -69,7 +69,7 @@
             "type": "キノコ使用",
             "videoType": "mp4",
             "videoSource": "https://video.twimg.com/amplify_video/1956998418578178048/vid/avc1/1280x720/1au4LSvkmh0j0FeA.mp4?tag=14",
-            "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカット。"
+            "description": "DKうちゅうセンターへ向かうエリアでのショートカット。"
           }
         ]
       }
