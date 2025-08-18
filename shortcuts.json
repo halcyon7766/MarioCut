@@ -38,6 +38,22 @@
     ]
   },
   {
+    "course": "DKスノーマウンテンアイスビルディング",
+    "shortcuts": [
+      {
+        "name": "ソルティータウン",
+        "methods": [
+          {
+            "type": "キノコ使用",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956632027786276864/vid/avc1/1280x720/T2nN0ZmE6uNfP-Ji.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
     "course": "キノピオハーバー",
     "shortcuts": [
       {
