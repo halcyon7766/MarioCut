@@ -1,53 +1,38 @@
 [
   {
-    "course": "マリオサーキット",
+    "course": "マリオブラザーズサーキット",
     "shortcuts": [
       {
-        "name": "最終コーナー",
+        "name": "チョコマウンテン",
         "methods": [
           {
-            "type": "キノコ使用",
-            "videoType": "youtube",
-            "videoSource": "dQw4w9WgXcQ",
-            "description": "最終コーナー手前のダートエリアを、キノコを使って突っ切ります。\nタイムを大幅に短縮できる定番のショートカットです。"
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1951235832159019008/vid/avc1/1280x720/TS3OHSQoR-Ab44EB.mp4?tag=14",
+            "description": ""
           },
           {
-            "type": "NISC (アイテムなし)",
-            "videoType": "youtube",
-            "videoSource": "o-YBDTqX_ZU",
-            "description": "アイテムを使わず、特定の角度で壁にぶつかりジャンプすることでショートカットします。高度なテクニックが必要です。"
+            "type": "🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950897279172481024/vid/avc1/1280x720/QgSaJUUtCmt-xt8D.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950878025920487424/vid/avc1/1280x720/nz2OrOnrv792U3fL.mp4?tag=14",
+            "description": ""
           }
         ]
-      }
-    ]
-  },
-  {
-    "course": "モーモーカントリー",
-    "shortcuts": [
+      },
       {
-        "name": "牧草地",
+        "name": "ヘイホーカーニバル",
         "methods": [
           {
-            "type": "キノコ使用",
-            "videoType": "youtube",
-            "videoSource": "3tmd-ClpJxA",
-            "description": "スタート直後の大きなカーブを曲がらず、キノコを使って牧草地をまっすぐ進みます。\n牛にぶつからないように注意が必要です。"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course": "キノピオハーバー",
-    "shortcuts": [
-      {
-        "name": "市場の屋根上",
-        "methods": [
-          {
-            "type": "通常ルート",
-            "videoType": "youtube",
-            "videoSource": "G8iEMVr7GFo",
-            "description": "市場のエリアで、ジャンプ台を使って屋根の上を走るルートです。\nコインも回収でき、直線的に進めます。"
+            "type": "🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956423365608308736/vid/avc1/1280x720/XpR4rYbk48FxQG66.mp4?tag=14",
+            "description": ""
           }
         ]
       }
@@ -60,31 +45,354 @@
         "name": "DKうちゅうセンター",
         "methods": [
           {
-            "type": "NISC",
+            "type": "🍄",
             "videoType": "mp4",
-            "videoSource": "https://video.twimg.com/amplify_video/1956987521390505984/vid/avc1/1280x720/zVscxg-dN2oSNmwL.mp4?tag=14",
-            "description": "DKうちゅうセンターへ向かう反重力エリアでのショートカット。コースの壁を利用してジャンプします。"
+            "videoSource": "https://video.twimg.com/amplify_video/1957380613536907264/vid/avc1/1280x720/M2dv_k-jaLIradzI.mp4?tag=14",
+            "description": ""
           },
           {
-            "type": "キノコ使用",
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1957380773222531073/vid/avc1/1280x720/t_5MzJd-pM0bkK_5.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄",
             "videoType": "mp4",
             "videoSource": "https://video.twimg.com/amplify_video/1956998418578178048/vid/avc1/1280x720/1au4LSvkmh0j0FeA.mp4?tag=14",
-            "description": "DKうちゅうセンターへ向かうエリアでのショートカット。"
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956987521390505984/vid/avc1/1280x720/zVscxg-dN2oSNmwL.mp4?tag=14",
+            "description": ""
           }
         ]
       }
     ]
   },
   {
-    "course": "DKスノーマウンテンアイスビルディング",
+    "course": "シュポポコースター",
+    "shortcuts": [
+      {
+        "name": "トロフィーシティ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1955465756617138176/vid/avc1/1280x720/ab5TYUvEbcKqyu9B.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950250137986760704/vid/avc1/1280x720/pMnZws1IwX7ImO2W.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950230268717256706/vid/avc1/1280x720/E_VWC0bmGaDq-cYf.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1954815820074500096/vid/avc1/1280x720/52-Cw0wDogpVasO7.mp4",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "チョコマウンテン",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1955465756617138176/vid/avc1/1280x720/ab5TYUvEbcKqyu9B.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950250137986760704/vid/avc1/1280x720/pMnZws1IwX7ImO2W.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950230268717256706/vid/avc1/1280x720/E_VWC0bmGaDq-cYf.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "サンサンさばく",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950250137986760704/vid/avc1/1280x720/pMnZws1IwX7ImO2W.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950230268717256706/vid/avc1/1280x720/E_VWC0bmGaDq-cYf.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "マリオブラザーズサーキット",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950250137986760704/vid/avc1/1280x720/pMnZws1IwX7ImO2W.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950230268717256706/vid/avc1/1280x720/E_VWC0bmGaDq-cYf.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "DKうちゅうセンター",
+    "shortcuts": [
+      {
+        "name": "トロフィーシティ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1953001990218498048/vid/avc1/1280x720/tIEk9_kNfiD7xD64.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "サンサンさばく",
+    "shortcuts": [
+      {
+        "name": "ヘイホーカーニバル",
+        "methods": [
+          {
+            "type": "🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956423365608308736/vid/avc1/1280x720/XpR4rYbk48FxQG66.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "ノコノコビーチ",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956435125115531265/vid/avc1/1280x720/qvqktMkCU3xxGBk_.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ヘイホーカーニバル",
+    "shortcuts": [
+      {
+        "name": "チョコマウンテン",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1951235832159019008/vid/avc1/1280x720/TS3OHSQoR-Ab44EB.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950897279172481024/vid/avc1/1280x720/QgSaJUUtCmt-xt8D.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ワリオスタジアム",
+    "shortcuts": [
+      {
+        "name": "ヘイホーカーニバル",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1951094299183161348/vid/avc1/1280x720/hKTvVnDS6wQ_YLnJ.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "チョコマウンテン",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1953519911072149512/vid/avc1/1280x720/JDR2MYK-_0odbia-.mp4",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "キラーシップ",
+    "shortcuts": [
+      {
+        "name": "クッパキャッスル",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1957488493296566272/vid/avc1/1280x720/IysmZ819hihbLhHJ.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "ヘイホーカーニバル",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1951094299183161348/vid/avc1/1280x720/hKTvVnDS6wQ_YLnJ.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "DKスノーマウンテン",
     "shortcuts": [
       {
         "name": "ソルティータウン",
         "methods": [
           {
-            "type": "キノコ使用",
+            "type": "🍄",
             "videoType": "mp4",
             "videoSource": "https://video.twimg.com/amplify_video/1956632027786276864/vid/avc1/1280x720/T2nN0ZmE6uNfP-Ji.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956653587674824704/vid/avc1/1280x720/Sbl2lWjgVno8RtvA.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956672874296799232/vid/avc1/1280x720/dTu2lIf6cuodsNkO.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ロゼッタてんもんだい",
+    "shortcuts": [
+      {
+        "name": "アイスビルディング",
+        "methods": [
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1955877253134606336/vid/avc1/1280x720/YUtWMfEktoIFDHT5.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1957650066698825730/vid/avc1/1280x720/Gy_LSftNllPBZtY3.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "プクプクフォールズ",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/ext_tw_video/1956774288067043329/pu/vid/avc1/1280x720/2ISap2u0S8wp2q6t.mp4?tag=12",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1957165623148240896/vid/avc1/1280x720/_j_CmWLC2CbWZjuR.mp4",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956718156225101824/vid/avc1/1280x720/NULmCKuHGFHFI6aE.mp4",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "アイスビルディング",
+    "shortcuts": [
+      {
+        "name": "ソルティータウン",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956632027786276864/vid/avc1/1280x720/T2nN0ZmE6uNfP-Ji.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956653587674824704/vid/avc1/1280x720/Sbl2lWjgVno8RtvA.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956672874296799232/vid/avc1/1280x720/dTu2lIf6cuodsNkO.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ノコノコビーチ",
+    "shortcuts": [
+      {
+        "name": "トロフィーシティ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1953001990218498048/vid/avc1/1280x720/tIEk9_kNfiD7xD64.mp4?tag=14",
             "description": ""
           }
         ]
@@ -95,13 +403,389 @@
     "course": "リバーサイドサファリ",
     "shortcuts": [
       {
+        "name": "ソルティータウン",
+        "methods": [
+          {
+            "type": "🍄🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956525489037922304/vid/avc1/1280x720/yK6nRBGIpAFv_nYT.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
         "name": "トロフィーシティ",
         "methods": [
           {
-            "type": "初手キノ3",
+            "type": "🍄",
             "videoType": "mp4",
-            "videoSource": "https://video.twimg.com/amplify_video/1956525489037922304/vid/avc1/1280x720/yK6nRBGIpAFv_nYT.mp4?tag=14",
-            "description": "初手キノ3ショトカ"
+            "videoSource": "https://video.twimg.com/amplify_video/1953001990218498048/vid/avc1/1280x720/tIEk9_kNfiD7xD64.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ピーチスタジアム",
+    "shortcuts": [
+      {
+        "name": "プクプクフォールズ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956282918038593536/vid/avc1/1280x720/clyLTRfClYrqvjoH.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ソルティータウン",
+    "shortcuts": [
+      {
+        "name": "リバーサイドサファリ",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1948801469328789504/vid/avc1/1280x720/a4JxkAmrNeRbc4VO.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "ワリオシップ",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1948801469328789504/vid/avc1/1280x720/a4JxkAmrNeRbc4VO.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "DKスノーマウンテン",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1948801469328789504/vid/avc1/1280x720/a4JxkAmrNeRbc4VO.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "プクプクフォールズ",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1948801469328789504/vid/avc1/1280x720/a4JxkAmrNeRbc4VO.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ディノディノジャングル",
+    "shortcuts": [
+      {
+        "name": "ソルティータウン",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1952911400038481920/vid/avc1/1280x720/iF8Rcp8H6WybXF1g.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ハテナしんでん",
+    "shortcuts": [
+      {
+        "name": "ノコノコビーチ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1954077016594239488/vid/avc1/1280x720/w4RmdA5EgTKMjhc9.mp4",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "ディノディノジャングル",
+        "methods": [
+          {
+            "type": "🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1953709616019517444/vid/avc1/1280x720/SioTn9-cuf11DbZP.mp4",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "プクプクフォールズ",
+    "shortcuts": [
+      {
+        "name": "モーモーカントリー",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950866876067958785/vid/avc1/1280x720/BI6rbJ_xuh9gsDQ_.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "おばけシネマ",
+    "shortcuts": [
+      {
+        "name": "マリオサーキット",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1957281944699625472/vid/avc1/1280x720/Yk0BOrNlHvEy4QCh.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "ホネホネツイスター",
+    "shortcuts": [
+      {
+        "name": "おばけシネマ",
+        "methods": [
+          {
+            "type": "🍄🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950160778214199296/vid/avc1/1280x720/CMNnl7-F-99tBkeu.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950148238658719744/vid/avc1/1280x720/WMYjuN5mRzSL0d5W.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950140259817459712/vid/avc1/1280x720/VmbmuYF-N-uEjLI1.mp4?tag=14",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947402998134849536/vid/avc1/1280x720/Haq_CRNco6pVnG09.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "キノピオファクトリー",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947403794989649925/vid/avc1/1280x720/MEn0lFIpKd2O-nMS.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "どんぐりツリーハウス",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947403476319014912/vid/avc1/1280x720/KBKHrqXFMM8t1t7B.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "ワリオスタジアム",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947400886260797440/vid/avc1/1280x720/yvLNi0V-tygKSym0.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "モーモーカントリー",
+    "shortcuts": [
+      {
+        "name": "プクプクフォールズ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956282918038593536/vid/avc1/1280x720/clyLTRfClYrqvjoH.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "キノピオファクトリー",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1949571736082804736/vid/avc1/1280x720/kHV8x3mk2s0qbwgp.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "マリオサーキット",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1949570668682702848/vid/avc1/1280x720/mAjKAmWKA01M3Idx.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "DKスノーマウンテン",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1949570446351028224/vid/avc1/1280x720/2yNz3bkgx66ou615.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "チョコマウンテン",
+    "shortcuts": [
+      {
+        "name": "プクプクフォールズ",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1956282918038593536/vid/avc1/1280x720/clyLTRfClYrqvjoH.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "マリオブラザーズサーキット",
+        "methods": [
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950874680979853312/vid/avc1/1280x720/r9I4babhNlNQJdfE.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "ヘイホーカーニバル",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1950351959342694400/vid/avc1/1280x720/XDbViZgGFOoOtO40.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "クッパキャッスル",
+    "shortcuts": [
+      {
+        "name": "ワリオスタジアム",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947400886260797440/vid/avc1/1280x720/yvLNi0V-tygKSym0.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "チョコマウンテン",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947331264534786048/vid/avc1/1280x720/Q5GlR7YBpweO48v8.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "マリオサーキット",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947319840404131841/vid/avc1/1280x720/8_cKHpg834ZE5413.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "キノピオファクトリー",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1947320041072164865/vid/avc1/1280x720/Pr1kqgV6ef-ZK3AC.mp4?tag=14",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course": "どんぐりツリーハウス",
+    "shortcuts": [
+      {
+        "name": "おばけシネマ",
+        "methods": [
+          {
+            "type": "なし",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/ext_tw_video/1957422119077425152/pu/vid/avc1/1280x720/sSpf-Xt6i8Cj0shp.mp4?tag=12",
+            "description": ""
+          },
+          {
+            "type": "🍄",
+            "videoType": "mp4",
+            "videoSource": "https://video.twimg.com/amplify_video/1955208340784721920/vid/avc1/1280x720/Vw3SJnJYA_iOv2jw.mp4",
+            "description": ""
           }
         ]
       }
