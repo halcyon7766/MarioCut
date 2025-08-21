@@ -34,13 +34,13 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                    <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">1. コースを選択</label>
+                    <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">1. 出発地を選択</label>
                     <select id="course-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                         <option value="">出発地</option>
                     </select>
                 </div>
                 <div>
-                    <label for="shortcut-select" class="block text-sm font-medium text-gray-700 mb-2">2. ショートカットを選択</label>
+                    <label for="shortcut-select" class="block text-sm font-medium text-gray-700 mb-2">2. 目的地を選択</label>
                     <select id="shortcut-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" disabled>
                         <option value="">先に出発地を選んでください</option>
                     </select>
@@ -125,7 +125,7 @@
             } else {
                 const defaultOption = document.createElement('option');
                 defaultOption.value = "";
-                defaultOption.textContent = "先にコースを選んでください";
+                defaultOption.textContent = "先に出発地を選んでください";
                 shortcutSelect.appendChild(defaultOption);
             }
         }
