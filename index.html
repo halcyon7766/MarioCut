@@ -27,30 +27,31 @@
         
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">MarioCut</h1>
-            <p class="text-gray-600 mt-2">コースとショートカットを選択して、複数の攻略法をチェック！</p>
+            <p class="text-gray-600 mt-2">出発地または目的地を選択して、ショートカットを検索！</p>
         </header>
 
         <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                    <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">1. 出発地を選択</label>
+                    <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">出発地</label>
                     <select id="course-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                        <option value="">出発地</option>
+                        <option value="">出発地を選択</option>
                     </select>
                 </div>
                 <div>
-                    <label for="shortcut-select" class="block text-sm font-medium text-gray-700 mb-2">2. 目的地を選択</label>
-                    <select id="shortcut-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" disabled>
-                        <option value="">先に出発地を選んでください</option>
+                    <label for="destination-select" class="block text-sm font-medium text-gray-700 mb-2">目的地</label>
+                    <select id="destination-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <option value="">目的地を選択</option>
                     </select>
                 </div>
             </div>
 
             <div id="result-container" class="bg-gray-50 p-6 rounded-lg min-h-[200px] flex items-center justify-center">
                 <p id="result-placeholder" class="text-gray-500 text-center">ここに選択したショートカットの情報が表示されます。</p>
-                <div id="result-content" class="hidden w-full">
-                    </div>
+                <div id="result-content" class="hidden w-full space-y-8">
+                    <!-- ショートカットがここに挿入されます -->
+                </div>
             </div>
 
         </main>
@@ -63,31 +64,38 @@
     <script>
         // --- DOM要素の取得 ---
         const courseSelect = document.getElementById('course-select');
-        const shortcutSelect = document.getElementById('shortcut-select');
+        const destinationSelect = document.getElementById('destination-select');
         const resultPlaceholder = document.getElementById('result-placeholder');
         const resultContent = document.getElementById('result-content');
 
         // --- グローバル変数 ---
-        let shortcutData = []; // 読み込んだJSONデータを保持する配列
+        let shortcutData = [];
+        let allCourses = [];
+        let allDestinations = [];
 
         // --- 初期化処理 ---
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                // 外部JSONファイルを非同期で読み込む
-                // GitHub Pagesのパス構造に合わせてリポジトリ名を追加
                 const response = await fetch('/MarioCut/shortcuts.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 shortcutData = await response.json();
 
-                // 読み込んだデータでドロップダウンを初期化
-                shortcutData.forEach(data => {
-                    const option = document.createElement('option');
-                    option.value = data.course;
-                    option.textContent = data.course;
-                    courseSelect.appendChild(option);
+                // 全ての出発地と目的地のユニークなリストを作成
+                const courseSet = new Set();
+                const destinationSet = new Set();
+                shortcutData.forEach(course => {
+                    courseSet.add(course.course);
+                    course.shortcuts.forEach(shortcut => {
+                        destinationSet.add(shortcut.name);
+                    });
                 });
+
+                allCourses = Array.from(courseSet).sort((a, b) => a.localeCompare(b, 'ja'));
+                allDestinations = Array.from(destinationSet).sort((a, b) => a.localeCompare(b, 'ja'));
+
+                // ドロップダウンを初期化
+                populateSelect(courseSelect, allCourses, "出発地を選択");
+                populateSelect(destinationSelect, allDestinations, "目的地を選択");
 
             } catch (error) {
                 console.error('ショートカットデータの読み込みに失敗しました:', error);
@@ -96,95 +104,134 @@
             
             // イベントリスナーを設定
             courseSelect.addEventListener('change', handleCourseChange);
-            shortcutSelect.addEventListener('change', handleShortcutChange);
+            destinationSelect.addEventListener('change', handleDestinationChange);
         });
 
         // --- イベントハンドラ関数 ---
+
         function handleCourseChange() {
             const selectedCourse = courseSelect.value;
-            shortcutSelect.innerHTML = '';
-            shortcutSelect.disabled = true;
-            hideResult();
+            // 他方のドロップダウンの選択を解除
+            destinationSelect.value = "";
 
             if (selectedCourse) {
-                const defaultOption = document.createElement('option');
-                defaultOption.value = "";
-                defaultOption.textContent = "目的地を選んでください";
-                shortcutSelect.appendChild(defaultOption);
-
                 const courseData = shortcutData.find(data => data.course === selectedCourse);
-                if (courseData) {
-                    courseData.shortcuts.forEach(shortcut => {
-                        const option = document.createElement('option');
-                        option.value = shortcut.name;
-                        option.textContent = shortcut.name;
-                        shortcutSelect.appendChild(option);
-                    });
-                    shortcutSelect.disabled = false;
-                }
+                const destinations = courseData ? courseData.shortcuts.map(s => s.name) : [];
+                populateSelect(destinationSelect, allDestinations, "目的地を選択", destinations);
+                
+                displayAllResults(courseData ? courseData.shortcuts : []);
             } else {
-                const defaultOption = document.createElement('option');
-                defaultOption.value = "";
-                defaultOption.textContent = "先に出発地を選んでください";
-                shortcutSelect.appendChild(defaultOption);
-            }
-        }
-
-        function handleShortcutChange() {
-            const selectedCourse = courseSelect.value;
-            const selectedShortcutName = shortcutSelect.value;
-
-            if (selectedCourse && selectedShortcutName) {
-                const courseData = shortcutData.find(data => data.course === selectedCourse);
-                const shortcutInfo = courseData.shortcuts.find(s => s.name === selectedShortcutName);
-
-                if (shortcutInfo) {
-                    displayResult(shortcutInfo);
-                }
-            } else {
+                // 選択が解除されたら両方のリストを元に戻す
+                populateSelect(destinationSelect, allDestinations, "目的地を選択");
                 hideResult();
             }
         }
 
-        // --- 表示更新関数 ---
-        /**
-         * 複数の攻略法を並べて表示する
-         * @param {object} shortcut - 表示するショートカットの情報 (methods配列を含む)
-         */
-        function displayResult(shortcut) {
-            resultContent.innerHTML = ''; // 以前の結果をクリア
+        function handleDestinationChange() {
+            const selectedDestination = destinationSelect.value;
+            // 他方のドロップダウンの選択を解除
+            courseSelect.value = "";
 
-            const container = document.createElement('div');
-            // 攻略法が1つの場合は1列、2つ以上なら2列で表示
-            const gridColsClass = shortcut.methods.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1';
-            container.className = `grid grid-cols-1 ${gridColsClass} gap-6`;
+            if (selectedDestination) {
+                const relevantCourses = shortcutData
+                    .filter(course => course.shortcuts.some(s => s.name === selectedDestination))
+                    .map(course => course.course);
+                populateSelect(courseSelect, allCourses, "出発地を選択", relevantCourses);
 
-            shortcut.methods.forEach(method => {
-                let videoElementHTML = '';
-                if (method.videoType === 'youtube') {
-                    videoElementHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${method.videoSource}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                } else if (method.videoType === 'mp4') {
-                    videoElementHTML = `<video class="absolute top-0 left-0 w-full h-full object-cover" src="${method.videoSource}" controls autoplay muted loop playsinline>お使いのブラウザは動画の再生に対応していません。</video>`;
+                const results = [];
+                shortcutData.forEach(course => {
+                    course.shortcuts.forEach(shortcut => {
+                        if (shortcut.name === selectedDestination) {
+                            // 結果表示のため、出発地の情報も追加
+                            results.push({ ...shortcut, courseName: course.course });
+                        }
+                    });
+                });
+                displayAllResults(results);
+            } else {
+                // 選択が解除されたら両方のリストを元に戻す
+                populateSelect(courseSelect, allCourses, "出発地を選択");
+                hideResult();
+            }
+        }
+
+        // --- 表示更新・補助関数 ---
+        
+        function populateSelect(selectElement, allOptions, placeholder, activeOptions = null) {
+            selectElement.innerHTML = '';
+            
+            const placeholderOption = document.createElement('option');
+            placeholderOption.value = "";
+            placeholderOption.textContent = placeholder;
+            selectElement.appendChild(placeholderOption);
+
+            allOptions.forEach(optionText => {
+                const option = document.createElement('option');
+                option.value = optionText;
+                option.textContent = optionText;
+                // activeOptionsが指定されている場合、それに含まれないものは非表示にする
+                if (activeOptions && !activeOptions.includes(optionText)) {
+                    option.disabled = true;
+                    option.style.display = 'none';
                 }
+                selectElement.appendChild(option);
+            });
+        }
+        
+        function displayAllResults(shortcutsArray) {
+            resultContent.innerHTML = '';
+            if (shortcutsArray.length === 0) {
+                hideResult();
+                resultPlaceholder.textContent = "該当するショートカットはありません。";
+                return;
+            }
 
-                const methodHTML = `
-                    <div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">${method.type}</h3>
-                        <div class="aspect-w-16 mb-4 rounded-lg overflow-hidden shadow-md bg-black">
-                            ${videoElementHTML}
+            shortcutsArray.forEach(shortcut => {
+                const shortcutContainer = document.createElement('div');
+                
+                // 目的地で検索した際に出発地も表示する
+                const titleText = shortcut.courseName 
+                    ? `${shortcut.courseName} → ${shortcut.name}` 
+                    : shortcut.name;
+
+                const titleElement = document.createElement('h2');
+                titleElement.className = "text-2xl font-bold mb-4 pb-2 border-b-2 border-blue-200";
+                titleElement.textContent = titleText;
+                shortcutContainer.appendChild(titleElement);
+
+                const methodsContainer = document.createElement('div');
+                const gridColsClass = shortcut.methods.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1';
+                methodsContainer.className = `grid grid-cols-1 ${gridColsClass} gap-6`;
+
+                shortcut.methods.forEach(method => {
+                    let videoElementHTML = '';
+                    if (method.videoType === 'youtube') {
+                        videoElementHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${method.videoSource}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    } else if (method.videoType === 'mp4') {
+                        videoElementHTML = `<video class="absolute top-0 left-0 w-full h-full object-cover" src="${method.videoSource}" controls autoplay muted loop playsinline>お使いのブラウザは動画の再生に対応していません。</video>`;
+                    }
+
+                    const methodHTML = `
+                        <div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-800">${method.type}</h3>
+                            <div class="aspect-w-16 mb-4 rounded-lg overflow-hidden shadow-md bg-black">
+                                ${videoElementHTML}
+                            </div>
+                            <p class="text-gray-700 leading-relaxed whitespace-pre-wrap">${method.description || ' '}</p>
                         </div>
-                        <p class="text-gray-700 leading-relaxed whitespace-pre-wrap">${method.description}</p>
-                    </div>
-                `;
-                container.innerHTML += methodHTML;
+                    `;
+                    methodsContainer.innerHTML += methodHTML;
+                });
+                shortcutContainer.appendChild(methodsContainer);
+                resultContent.appendChild(shortcutContainer);
             });
 
-            resultContent.appendChild(container);
             resultPlaceholder.classList.add('hidden');
             resultContent.classList.remove('hidden');
         }
 
         function hideResult() {
+            resultPlaceholder.textContent = "ここに選択したショートカットの情報が表示されます。";
             resultPlaceholder.classList.remove('hidden');
             resultContent.classList.add('hidden');
             resultContent.innerHTML = '';
@@ -192,4 +239,3 @@
     </script>
 </body>
 </html>
-
