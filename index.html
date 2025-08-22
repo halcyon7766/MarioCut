@@ -27,12 +27,12 @@
         
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">MarioCut</h1>
-            <p class="text-gray-600 mt-2">出発地または目的地を選択して、ショートカットを検索！</p>
+            <p class="text-gray-600 mt-2">出発地と目的地でショートカットを絞り込み検索！</p>
         </header>
 
         <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">出発地</label>
                     <select id="course-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
@@ -46,6 +46,14 @@
                     </select>
                 </div>
             </div>
+
+            <!-- ▼▼▼ リセットボタンを追加 ▼▼▼ -->
+            <div class="text-center mb-8">
+                <button id="reset-button" class="px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition shadow">
+                    選択をリセット
+                </button>
+            </div>
+            <!-- ▲▲▲ リセットボタンを追加 ▲▲▲ -->
 
             <div id="result-container" class="bg-gray-50 p-6 rounded-lg min-h-[200px] flex items-center justify-center">
                 <p id="result-placeholder" class="text-gray-500 text-center">ここに選択したショートカットの情報が表示されます。</p>
@@ -67,6 +75,7 @@
         const destinationSelect = document.getElementById('destination-select');
         const resultPlaceholder = document.getElementById('result-placeholder');
         const resultContent = document.getElementById('result-content');
+        const resetButton = document.getElementById('reset-button'); // ボタン要素を取得
 
         // --- グローバル変数 ---
         let shortcutData = [];
@@ -80,7 +89,6 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 shortcutData = await response.json();
 
-                // 全ての出発地と目的地のユニークなリストを作成
                 const courseSet = new Set();
                 const destinationSet = new Set();
                 shortcutData.forEach(course => {
@@ -93,7 +101,6 @@
                 allCourses = Array.from(courseSet).sort((a, b) => a.localeCompare(b, 'ja'));
                 allDestinations = Array.from(destinationSet).sort((a, b) => a.localeCompare(b, 'ja'));
 
-                // ドロップダウンを初期化
                 populateSelect(courseSelect, allCourses, "出発地を選択");
                 populateSelect(destinationSelect, allDestinations, "目的地を選択");
 
@@ -102,62 +109,60 @@
                 resultPlaceholder.textContent = 'エラー: shortcuts.jsonの読み込みに失敗しました。';
             }
             
-            // イベントリスナーを設定
             courseSelect.addEventListener('change', handleCourseChange);
             destinationSelect.addEventListener('change', handleDestinationChange);
+            resetButton.addEventListener('click', handleReset); // リセットボタンのイベントリスナーを追加
         });
 
         // --- イベントハンドラ関数 ---
 
         function handleCourseChange() {
             const selectedCourse = courseSelect.value;
-            // 他方のドロップダウンの選択を解除
-            destinationSelect.value = "";
-
             if (selectedCourse) {
                 const courseData = shortcutData.find(data => data.course === selectedCourse);
-                const destinations = courseData ? courseData.shortcuts.map(s => s.name) : [];
-                populateSelect(destinationSelect, allDestinations, "目的地を選択", destinations);
-                
-                displayAllResults(courseData ? courseData.shortcuts : []);
+                const destinations = courseData ? courseData.shortcuts.map(s => s.name).sort((a, b) => a.localeCompare(b, 'ja')) : [];
+                populateSelect(destinationSelect, destinations, "目的地を選択");
             } else {
-                // 選択が解除されたら両方のリストを元に戻す
                 populateSelect(destinationSelect, allDestinations, "目的地を選択");
-                hideResult();
             }
+            filterAndDisplayResults();
         }
 
         function handleDestinationChange() {
             const selectedDestination = destinationSelect.value;
-            // 他方のドロップダウンの選択を解除
-            courseSelect.value = "";
-
             if (selectedDestination) {
                 const relevantCourses = shortcutData
                     .filter(course => course.shortcuts.some(s => s.name === selectedDestination))
-                    .map(course => course.course);
-                populateSelect(courseSelect, allCourses, "出発地を選択", relevantCourses);
-
-                const results = [];
-                shortcutData.forEach(course => {
-                    course.shortcuts.forEach(shortcut => {
-                        if (shortcut.name === selectedDestination) {
-                            // 結果表示のため、出発地の情報も追加
-                            results.push({ ...shortcut, courseName: course.course });
-                        }
-                    });
-                });
-                displayAllResults(results);
+                    .map(course => course.course)
+                    .sort((a, b) => a.localeCompare(b, 'ja'));
+                populateSelect(courseSelect, relevantCourses, "出発地を選択");
             } else {
-                // 選択が解除されたら両方のリストを元に戻す
                 populateSelect(courseSelect, allCourses, "出発地を選択");
-                hideResult();
             }
+            filterAndDisplayResults();
         }
+
+        /**
+         * ▼▼▼ リセット処理の関数を追加 ▼▼▼
+         */
+        function handleReset() {
+            // ドロップダウンのリストを全選択肢に戻す
+            populateSelect(courseSelect, allCourses, "出発地を選択");
+            populateSelect(destinationSelect, allDestinations, "目的地を選択");
+            
+            // ドロップダウンの選択をクリア
+            courseSelect.value = "";
+            destinationSelect.value = "";
+
+            // 結果を非表示にする
+            hideResult();
+        }
+
 
         // --- 表示更新・補助関数 ---
         
-        function populateSelect(selectElement, allOptions, placeholder, activeOptions = null) {
+        function populateSelect(selectElement, options, placeholder) {
+            const currentValue = selectElement.value;
             selectElement.innerHTML = '';
             
             const placeholderOption = document.createElement('option');
@@ -165,17 +170,47 @@
             placeholderOption.textContent = placeholder;
             selectElement.appendChild(placeholderOption);
 
-            allOptions.forEach(optionText => {
+            options.forEach(optionText => {
                 const option = document.createElement('option');
                 option.value = optionText;
                 option.textContent = optionText;
-                // activeOptionsが指定されている場合、それに含まれないものは非表示にする
-                if (activeOptions && !activeOptions.includes(optionText)) {
-                    option.disabled = true;
-                    option.style.display = 'none';
-                }
                 selectElement.appendChild(option);
             });
+
+            if (options.includes(currentValue)) {
+                selectElement.value = currentValue;
+            }
+        }
+
+        function filterAndDisplayResults() {
+            const selectedCourse = courseSelect.value;
+            const selectedDestination = destinationSelect.value;
+            let results = [];
+
+            if (selectedCourse && selectedDestination) {
+                const courseData = shortcutData.find(c => c.course === selectedCourse);
+                if (courseData) {
+                    const shortcut = courseData.shortcuts.find(s => s.name === selectedDestination);
+                    if (shortcut) results.push({ ...shortcut, courseName: selectedCourse });
+                }
+            } else if (selectedCourse) {
+                const courseData = shortcutData.find(c => c.course === selectedCourse);
+                if (courseData) results = courseData.shortcuts.map(s => ({ ...s, courseName: selectedCourse }));
+            } else if (selectedDestination) {
+                shortcutData.forEach(course => {
+                    course.shortcuts.forEach(shortcut => {
+                        if (shortcut.name === selectedDestination) {
+                            results.push({ ...shortcut, courseName: course.course });
+                        }
+                    });
+                });
+            }
+
+            if (results.length > 0) {
+                displayAllResults(results);
+            } else {
+                hideResult();
+            }
         }
         
         function displayAllResults(shortcutsArray) {
@@ -188,11 +223,7 @@
 
             shortcutsArray.forEach(shortcut => {
                 const shortcutContainer = document.createElement('div');
-                
-                // 目的地で検索した際に出発地も表示する
-                const titleText = shortcut.courseName 
-                    ? `${shortcut.courseName} → ${shortcut.name}` 
-                    : shortcut.name;
+                const titleText = shortcut.courseName ? `${shortcut.courseName} → ${shortcut.name}` : shortcut.name;
 
                 const titleElement = document.createElement('h2');
                 titleElement.className = "text-2xl font-bold mb-4 pb-2 border-b-2 border-blue-200";
