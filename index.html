@@ -19,6 +19,20 @@
             position: relative;
             padding-bottom: 56.25%; /* 16:9 */
         }
+        /* お気に入りスターのスタイル */
+        .favorite-star {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #d1d5db; /* gray-300 */
+            transition: color 0.2s, transform 0.2s;
+        }
+        .favorite-star.active {
+            color: #f59e0b; /* amber-500 */
+            transform: scale(1.2);
+        }
+        .favorite-star:hover {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -32,7 +46,7 @@
 
         <main class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
                 <div>
                     <label for="course-select" class="block text-sm font-medium text-gray-700 mb-2">出発地</label>
                     <select id="course-select" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
@@ -47,13 +61,11 @@
                 </div>
             </div>
 
-            <!-- ▼▼▼ リセットボタンを追加 ▼▼▼ -->
-            <div class="text-center mb-8">
-                <button id="reset-button" class="px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition shadow">
-                    選択をリセット
-                </button>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button id="favorites-button" class="px-5 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition shadow">⭐ お気に入りのみ表示</button>
+                <button id="random-button" class="px-5 py-2 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition shadow">🎲 ランダムに表示</button>
+                <button id="reset-button" class="px-5 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition shadow">リセット</button>
             </div>
-            <!-- ▲▲▲ リセットボタンを追加 ▲▲▲ -->
 
             <div id="result-container" class="bg-gray-50 p-6 rounded-lg min-h-[200px] flex items-center justify-center">
                 <p id="result-placeholder" class="text-gray-500 text-center">ここに選択したショートカットの情報が表示されます。</p>
@@ -75,15 +87,22 @@
         const destinationSelect = document.getElementById('destination-select');
         const resultPlaceholder = document.getElementById('result-placeholder');
         const resultContent = document.getElementById('result-content');
-        const resetButton = document.getElementById('reset-button'); // ボタン要素を取得
+        const resetButton = document.getElementById('reset-button');
+        const favoritesButton = document.getElementById('favorites-button');
+        const randomButton = document.getElementById('random-button');
 
         // --- グローバル変数 ---
         let shortcutData = [];
         let allCourses = [];
         let allDestinations = [];
+        let favorites = [];
+        let videoObserver;
 
         // --- 初期化処理 ---
         document.addEventListener('DOMContentLoaded', async () => {
+            loadFavorites();
+            setupVideoObserver();
+            
             try {
                 const response = await fetch('/MarioCut/shortcuts.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -111,7 +130,9 @@
             
             courseSelect.addEventListener('change', handleCourseChange);
             destinationSelect.addEventListener('change', handleDestinationChange);
-            resetButton.addEventListener('click', handleReset); // リセットボタンのイベントリスナーを追加
+            resetButton.addEventListener('click', handleReset);
+            favoritesButton.addEventListener('click', handleShowFavorites);
+            randomButton.addEventListener('click', handleShowRandom);
         });
 
         // --- イベントハンドラ関数 ---
@@ -142,23 +163,76 @@
             filterAndDisplayResults();
         }
 
-        /**
-         * ▼▼▼ リセット処理の関数を追加 ▼▼▼
-         */
         function handleReset() {
-            // ドロップダウンのリストを全選択肢に戻す
             populateSelect(courseSelect, allCourses, "出発地を選択");
             populateSelect(destinationSelect, allDestinations, "目的地を選択");
-            
-            // ドロップダウンの選択をクリア
             courseSelect.value = "";
             destinationSelect.value = "";
-
-            // 結果を非表示にする
             hideResult();
         }
 
+        function handleShowFavorites() {
+            handleReset(); // 他の選択をクリア
+            const favoriteShortcuts = [];
+            shortcutData.forEach(course => {
+                course.shortcuts.forEach(shortcut => {
+                    const id = `${course.course}-${shortcut.name}`;
+                    if (favorites.includes(id)) {
+                        favoriteShortcuts.push({ ...shortcut, courseName: course.course });
+                    }
+                });
+            });
+            displayAllResults(favoriteShortcuts);
+        }
 
+        function handleShowRandom() {
+            handleReset(); // 他の選択をクリア
+            const allShortcuts = [];
+            shortcutData.forEach(course => {
+                course.shortcuts.forEach(shortcut => {
+                    allShortcuts.push({ ...shortcut, courseName: course.course });
+                });
+            });
+
+            if (allShortcuts.length > 0) {
+                const randomIndex = Math.floor(Math.random() * allShortcuts.length);
+                displayAllResults([allShortcuts[randomIndex]]);
+            }
+        }
+
+        // --- お気に入り機能 ---
+        function loadFavorites() {
+            favorites = JSON.parse(localStorage.getItem('marioCutFavorites')) || [];
+        }
+
+        function saveFavorites() {
+            localStorage.setItem('marioCutFavorites', JSON.stringify(favorites));
+        }
+
+        function toggleFavorite(id, starElement) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(favId => favId !== id);
+                starElement.classList.remove('active');
+            } else {
+                favorites.push(id);
+                starElement.classList.add('active');
+            }
+            saveFavorites();
+        }
+
+        // --- 遅延読み込み機能 ---
+        function setupVideoObserver() {
+            videoObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        video.src = video.dataset.src;
+                        observer.unobserve(video);
+                    }
+                });
+            }, { rootMargin: "0px 0px 200px 0px" }); // 画面に入る200px手前から読み込み開始
+        }
+        
         // --- 表示更新・補助関数 ---
         
         function populateSelect(selectElement, options, placeholder) {
@@ -222,13 +296,28 @@
             }
 
             shortcutsArray.forEach(shortcut => {
+                const shortcutId = `${shortcut.courseName}-${shortcut.name}`;
+                const isFav = favorites.includes(shortcutId);
+
                 const shortcutContainer = document.createElement('div');
                 const titleText = shortcut.courseName ? `${shortcut.courseName} → ${shortcut.name}` : shortcut.name;
 
+                const titleContainer = document.createElement('div');
+                titleContainer.className = "flex justify-between items-center mb-4 pb-2 border-b-2 border-blue-200";
+                
                 const titleElement = document.createElement('h2');
-                titleElement.className = "text-2xl font-bold mb-4 pb-2 border-b-2 border-blue-200";
+                titleElement.className = "text-2xl font-bold";
                 titleElement.textContent = titleText;
-                shortcutContainer.appendChild(titleElement);
+
+                const starElement = document.createElement('span');
+                starElement.className = `favorite-star ${isFav ? 'active' : ''}`;
+                starElement.innerHTML = '&#9733;'; // ★
+                starElement.dataset.id = shortcutId;
+                starElement.addEventListener('click', () => toggleFavorite(shortcutId, starElement));
+
+                titleContainer.appendChild(titleElement);
+                titleContainer.appendChild(starElement);
+                shortcutContainer.appendChild(titleContainer);
 
                 const methodsContainer = document.createElement('div');
                 const gridColsClass = shortcut.methods.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1';
@@ -237,9 +326,9 @@
                 shortcut.methods.forEach(method => {
                     let videoElementHTML = '';
                     if (method.videoType === 'youtube') {
-                        videoElementHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${method.videoSource}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                        videoElementHTML = `<iframe class="absolute top-0 left-0 w-full h-full lazy-video" data-src="https://www.youtube.com/embed/${method.videoSource}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                     } else if (method.videoType === 'mp4') {
-                        videoElementHTML = `<video class="absolute top-0 left-0 w-full h-full object-cover" src="${method.videoSource}" controls autoplay muted loop playsinline>お使いのブラウザは動画の再生に対応していません。</video>`;
+                        videoElementHTML = `<video class="absolute top-0 left-0 w-full h-full object-cover lazy-video" data-src="${method.videoSource}" controls autoplay muted loop playsinline>お使いのブラウザは動画の再生に対応していません。</video>`;
                     }
 
                     const methodHTML = `
@@ -257,6 +346,9 @@
                 resultContent.appendChild(shortcutContainer);
             });
 
+            // 遅延読み込みの対象を監視
+            document.querySelectorAll('.lazy-video').forEach(video => videoObserver.observe(video));
+
             resultPlaceholder.classList.add('hidden');
             resultContent.classList.remove('hidden');
         }
@@ -270,3 +362,4 @@
     </script>
 </body>
 </html>
+
